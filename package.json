@@ -1,0 +1,23 @@
+{
+  "name": "recipe-finder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rehpotsirhc21/recipe-finder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rehpotsirhc21/recipe-finder/issues"
+  },
+  "homepage": "https://github.com/rehpotsirhc21/recipe-finder#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.0.24"
+  }
+}
