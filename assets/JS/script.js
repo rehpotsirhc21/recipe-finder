@@ -1,5 +1,5 @@
-// fetch food values on click
-let newArr = [];
+
+//fetch recipe on click
 $("#foodBtn").click(function (e) {
   // food API variable and fetch request
   const foodAPI = "https://www.themealdb.com/api/json/v1/1/random.php?&=1";
