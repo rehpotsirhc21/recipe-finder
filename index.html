@@ -1,18 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./tailwind/output.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Document</title>
-</head>
-<body>
-    <div class="flex-auto flex-col">
-        <h2 class="text-yellow-100 bg-red-500">test element</h2>
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./tailwind/output.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <title>Recipe Roulette</title>
+  </head>
+  <body>
+    <header id="header" class="bg-gray-100">
+        <nav id="nav">
+            <ul class="flex flex-row justify-between p-3">
+              <li>favorites</li>
+              <li>previous searches</li>
+            </ul>
+          </nav>
+      <h1 id="title" class="text-6xl text-center">Recipe Roulette</h1>
+     
+    </header>
+    <body>
+        <main>
+      <section>
+        <h2 id="food" class="text-5xl">food</h2>
+        <button id="foodBtn" class="bg-emerald-200 rounded-full px-3">food</button>
+        <details>
+            <summary>food details</summary>
+        <div id="foodImg">food image</div>
+        <div id="ingredients-food">ingred</div>
+        <div id="directions-food">directions</div>
+        <div id="links">links</div>
+    </details>  
+      </section>
+
+      <section>
+          <h2 id="drink" class="text-5xl">drink</h2>
+          <button id="drinkBtn" class="bg-emerald-200 rounded-full px-3">drink</button>
+          <details>
+              <summary>drink text</summary>
+          <div id="drinkImg">drink img</div>
+          <div id="ingredients-drink">ingre</div>
+        <div id="directions-drink">directions</div>
+    </details>
+        
+      </section>
+      </main>
+    </body>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/JS/script.js"></script>
-</body>
+  </body>
 </html>
