@@ -1,3 +1,5 @@
+var foods = []
+var drinks = []
 //fetch recipe on click
 $("#foodBtn").click(function (e) {
   // food API variable and fetch request
@@ -18,7 +20,8 @@ $("#foodBtn").click(function (e) {
           recipeDirections: foodData.strInstructions
         };
         makeMeal(data.meals[0]);
-        localStorage.setItem("foodBtn", JSON.stringify(foodDataObj.recipeId));
+        foods.push(foodDataObj.recipeId)
+        localStorage.setItem("Food Recipes ID's ", JSON.stringify(foods));
       });
     }
   });
@@ -62,7 +65,8 @@ $("#drinkBtn").click(function (e) {
         }
 
         makeDrink(data.drinks[0]);
-        localStorage.setItem("drinkBtn", JSON.stringify(drinkDataObj.drinkId))
+        drinks.push(drinkDataObj.drinkId)
+        localStorage.setItem("Drink Recipe ID's ", JSON.stringify(drinks))
       });
     }
   });
