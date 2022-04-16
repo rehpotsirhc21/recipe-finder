@@ -6,7 +6,7 @@ $("#foodBtn").click(function (e) {
     if (response.ok) {
       response.json().then(function (data) {
         console.log(data);
-
+        
         //assign api fields to a data object
         const foodData = data.meals[0];
         const foodDataObj = {
@@ -15,7 +15,8 @@ $("#foodBtn").click(function (e) {
           recipeImg: foodData.strMealThumb,
           recipeVideo: foodData.strYoutube,
           recipeDirections: foodData.strInstructions
-        };
+          };
+          foodHtml(foodDataObj)
         makeMeal(data.meals[0]);
       });
     }
@@ -26,10 +27,12 @@ $("#foodBtn").click(function (e) {
 const makeMeal = (meal) => {
   const ingredients = [];
 
+    const ingredUl = $(`<ul></ul>`)
+    $('#ingredients-food').append(ingredUl)
   for (let i = 1; i <= 20; i++) {
     if (meal[`strIngredient${i}`]) {
       ingredients.push(
-        `${meal[`strMeasure${i}`]} | ${meal[`strIngredient${i}`]}`
+          $("#ingredients-food").append($(`<li>${meal[`strMeasure${i}`]} | ${meal[`strIngredient${i}`]}</li>`))
       );
     } else {
       // Stop if no more ingredients
@@ -57,7 +60,7 @@ $("#drinkBtn").click(function (e) {
             drinkImg: drinkData.strDrinkThumb,
             drinkDirections: drinkData.strInstructions
         }
-
+        drinkHtml(drinkDataObj)
         makeDrink(data.drinks[0]);
       });
     }
@@ -66,11 +69,11 @@ $("#drinkBtn").click(function (e) {
 
 const makeDrink = (drink) => {
   const drinkIngredients = [];
-
+    const ingredUl = $(`<ul></ul>`)
   for (let i = 1; i <= 15; i++) {
     if (drink[`strIngredient${i}`]) {
       drinkIngredients.push(
-        `${drink[`strMeasure${i}`]} | ${drink[`strIngredient${i}`]}`
+        $("#ingredients-drink").append($(`<li>${drink[`strMeasure${i}`]} | ${drink[`strIngredient${i}`]}</li>`))
       );
     } else {
       // Stop if no more ingredients
@@ -79,3 +82,28 @@ const makeDrink = (drink) => {
   }
   console.log(drinkIngredients);
 };
+
+const foodHtml = (foodDataObj) =>
+{
+    const foodImg = $(`<div id="food-div"></div>`)
+    console.log(foodDataObj.recipeDirections)
+    const foodDir = $(`<p>${foodDataObj.recipeDirections}</p>`)
+    $("#directions-food").append(foodDir)
+    foodImg.append($(`<img src="${foodDataObj.recipeImg}">`))
+    const foodLink = $(`<a href="${foodDataObj.recipeVideo}" target="_blank">Link</a>`)
+    console.log(foodDataObj.recipeVideo)
+    $("#links").append(foodLink)
+    $("#foodImg").append(foodImg)
+}
+const drinkHtml = (drinkDataObj) =>
+{
+    const drinkImg = $(`<div id="drink-div"></div>`)
+    console.log(drinkDataObj.drinkDirections)
+    const drinkDir = $(`<p>${drinkDataObj.drinkDirections}</p>`)
+    $("#directions-drink").append(drinkDir)
+    drinkImg.append($(`<img src="${drinkDataObj.drinkImg}">`))
+    const drinkLink = $(`<a href="${drinkDataObj.drinkVideo}" target="_blank">Link</a>`)
+    console.log(drinkDataObj.drinkVideo)
+    $("#links").append(drinkLink)
+    $("#drinkImg").append(drinkImg)
+}
