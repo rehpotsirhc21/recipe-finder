@@ -3,10 +3,13 @@ $("#foodBtn").click(function (e) {
   // food API variable and fetch request
   const foodAPI = "https://www.themealdb.com/api/json/v1/1/random.php?&=1";
   fetch(foodAPI).then(function (response) {
-    if (response.ok) {
+    if (response.ok) { 
+        // clears all divs from food-details children
+        $('#food-details').children('div').empty()
+        // console.log(response);
       response.json().then(function (data) {
-        console.log(data);
-        
+       
+        // console.log(data)
         //assign api fields to a data object
         const foodData = data.meals[0];
         const foodDataObj = {
@@ -16,7 +19,7 @@ $("#foodBtn").click(function (e) {
           recipeVideo: foodData.strYoutube,
           recipeDirections: foodData.strInstructions
           };
-          foodHtml(foodDataObj)
+          htmlInsert(foodDataObj)
         makeMeal(data.meals[0]);
       });
     }
@@ -28,18 +31,18 @@ const makeMeal = (meal) => {
   const ingredients = [];
 
     const ingredUl = $(`<ul></ul>`)
-    $('#ingredients-food').append(ingredUl)
+    $('#ingredients-recipe').append(ingredUl)
   for (let i = 1; i <= 20; i++) {
     if (meal[`strIngredient${i}`]) {
       ingredients.push(
-          $("#ingredients-food").append($(`<li>${meal[`strMeasure${i}`]} | ${meal[`strIngredient${i}`]}</li>`))
+          $("#ingredients-recipe").append($(`<li>${meal[`strMeasure${i}`]} | ${meal[`strIngredient${i}`]}</li>`))
       );
     } else {
       // Stop if no more ingredients
       break;
     }
   }
-  console.log(ingredients);
+//   console.log(ingredients);
 };
 
 //fetch drink recipe on click
@@ -47,6 +50,8 @@ $("#drinkBtn").click(function (e) {
   // food API variable and fetch request
   const drinkAPI = "https://www.thecocktaildb.com/api/json/v1/1/random.php?=1";
   fetch(drinkAPI).then(function (response) {
+      // clears all divs from drink-details children
+      $('#drink-details').children('div').empty()
     if (response.ok) {
       response.json().then(function (data) {
         console.log(data);
@@ -60,7 +65,8 @@ $("#drinkBtn").click(function (e) {
             drinkImg: drinkData.strDrinkThumb,
             drinkDirections: drinkData.strInstructions
         }
-        drinkHtml(drinkDataObj)
+          htmlInsert(drinkDataObj)
+          console.log(drinkDataObj)
         makeDrink(data.drinks[0]);
       });
     }
@@ -82,28 +88,30 @@ const makeDrink = (drink) => {
   }
   console.log(drinkIngredients);
 };
-
-const foodHtml = (foodDataObj) =>
+// grabs the object from what button you pressed
+const htmlInsert = (item) =>
 {
-    const foodImg = $(`<div id="food-div"></div>`)
-    console.log(foodDataObj.recipeDirections)
-    const foodDir = $(`<p>${foodDataObj.recipeDirections}</p>`)
-    $("#directions-food").append(foodDir)
-    foodImg.append($(`<img src="${foodDataObj.recipeImg}">`))
-    const foodLink = $(`<a href="${foodDataObj.recipeVideo}" target="_blank">Link</a>`)
-    console.log(foodDataObj.recipeVideo)
-    $("#links").append(foodLink)
-    $("#foodImg").append(foodImg)
-}
-const drinkHtml = (drinkDataObj) =>
-{
-    const drinkImg = $(`<div id="drink-div"></div>`)
-    console.log(drinkDataObj.drinkDirections)
-    const drinkDir = $(`<p>${drinkDataObj.drinkDirections}</p>`)
-    $("#directions-drink").append(drinkDir)
-    drinkImg.append($(`<img src="${drinkDataObj.drinkImg}">`))
-    const drinkLink = $(`<a href="${drinkDataObj.drinkVideo}" target="_blank">Link</a>`)
-    console.log(drinkDataObj.drinkVideo)
-    $("#links").append(drinkLink)
-    $("#drinkImg").append(drinkImg)
+    console.log(item.recipeName)
+    var type = []
+    var itemLink
+    // check what button was pressed
+    if (item.recipeName)
+    {
+        // if food button pressed
+        type = [ "recipe", item.recipeDirections, item.recipeImg, item.recipeVideo]
+        console.log(type[1])
+        const itemLink = $(`<a href="${type[3]}" target="_blank">Link</a>`)
+        $("#links").append(itemLink)
+    }
+    if (item.drinkName)
+    {
+        // if drink button was pressed
+        type = ["drink", item.drinkDirections, item.drinkImg]
+    }
+    const itemImg = $(`<div id="${type[0]}-div"></div>`)
+    console.log(item)
+    const itemDir = $(`<p>${type[1]}</p>`)
+    $(`#directions-${type[0]}`).append(itemDir)
+    itemImg.append($(`<img src="${type[2]}">`))
+    $(`#${type[0]}Img`).append(itemImg)
 }
