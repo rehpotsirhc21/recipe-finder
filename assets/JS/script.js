@@ -5,11 +5,12 @@ $("#foodBtn").click(function (e) {
   fetch(foodAPI).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        console.log(data);
+        console.log("food data", data);
 
         //assign api fields to a data object
         const foodData = data.meals[0];
         const foodDataObj = {
+          recipeId: foodData.idMeal,
           recipeName: foodData.strMeal,
           recipeCategory: foodData.strCategory,
           recipeImg: foodData.strMealThumb,
@@ -17,6 +18,7 @@ $("#foodBtn").click(function (e) {
           recipeDirections: foodData.strInstructions
         };
         makeMeal(data.meals[0]);
+        localStorage.setItem("foodBtn", JSON.stringify(foodDataObj.recipeId));
       });
     }
   });
@@ -46,10 +48,11 @@ $("#drinkBtn").click(function (e) {
   fetch(drinkAPI).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        console.log(data);
+        console.log("drinks", data);
         drinkData = data.drinks[0]
         //assign api fields to a data object
         const drinkDataObj = {
+            drinkId: drinkData.idDrink,
             drinkName: drinkData.strDrink,
             drinkCategory: drinkData.strCategory,
             drinkAlcoholic: drinkData.drinkAlcoholic, 
@@ -59,6 +62,7 @@ $("#drinkBtn").click(function (e) {
         }
 
         makeDrink(data.drinks[0]);
+        localStorage.setItem("drinkBtn", JSON.stringify(drinkDataObj.drinkId))
       });
     }
   });
