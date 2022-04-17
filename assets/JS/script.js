@@ -157,3 +157,40 @@ const htmlInsert = (item) =>
     $(`#${type[0]}Img`).append(itemImg)
 }
 
+function renderPreviousSearch(item){
+  var name
+  if (item.drinkName){
+    var name = item.drinkName
+    preFoodDrink.push(item.drinkId)
+  }
+  if (item.recipeName){
+    var name = item.recipeName
+    preFoodDrink.push(item.recipeId)
+    localStorage.setItem("Food Id's ", JSON.stringify(preFoodDrink))
+  }
+  const preLiItem = $(`<li>${name}</li>`)
+  $("#pre").prepend(preLiItem)
+  console.log($("#pre").children("li").length)
+  if ($("#pre").children("li").length >= 9){
+      console.log("working")
+    $("#pre").find("li:last").remove()
+    }
+  }
+function renderFavorite(item){
+  var name
+  var list
+  if (item.drinkName){
+    var name = item.drinkName
+    var list = $("#favDrink")
+    favDrinks.push(item.drinkId)
+    localStorage.setItem("Favorite Drink's", JSON.stringify(favDrinks))
+  }
+  if (item.recipeName){
+    var name = item.recipeName
+    var list = $("#favFood")
+    favFoods.push(item.recipeId)
+    localStorage.setItem("Favorite Foods", JSON.stringify(favFoods))
+  }
+  const preLiItem = $(`<li>${name}</li>`)
+  list.append(preLiItem)
+}
