@@ -1,3 +1,6 @@
+var preFoodDrink = []
+var favFoods = []
+var favDrinks = []
 //fetch recipe on click
 $("#foodBtn").click(function (e) {
   // food API variable and fetch request
@@ -9,10 +12,13 @@ $("#foodBtn").click(function (e) {
         // console.log(response);
       response.json().then(function (data) {
        
+
         // console.log(data)
+
         //assign api fields to a data object
         const foodData = data.meals[0];
         const foodDataObj = {
+          recipeId: foodData.idMeal,
           recipeName: foodData.strMeal,
           recipeCategory: foodData.strCategory,
           recipeImg: foodData.strMealThumb,
@@ -20,6 +26,7 @@ $("#foodBtn").click(function (e) {
           recipeDirections: foodData.strInstructions
           };
           htmlInsert(foodDataObj)
+
           // auto opens detail drop down tab
           $("#food-details").attr('open', 'open')
         makeMeal(data.meals[0]);
@@ -32,12 +39,16 @@ $("#foodBtn").click(function (e) {
 const makeMeal = (meal) => {
   const ingredients = [];
 
+
     const ingredUl = $(`<ul class="justify-center"></ul>`)
+
     $('#ingredients-recipe').append(ingredUl)
   for (let i = 1; i <= 20; i++) {
     if (meal[`strIngredient${i}`]) {
       ingredients.push(
+
           ingredUl.append($(`<li>${meal[`strMeasure${i}`]} | ${meal[`strIngredient${i}`]}</li>`))
+
       );
     } else {
       // Stop if no more ingredients
@@ -56,10 +67,13 @@ $("#drinkBtn").click(function (e) {
       $('#drink-details').children('div').empty()
     if (response.ok) {
       response.json().then(function (data) {
+
         console.log(data);
+
         drinkData = data.drinks[0];
         //assign api fields to a data object
         const drinkDataObj = {
+            drinkId: drinkData.idDrink,
             drinkName: drinkData.strDrink,
             drinkCategory: drinkData.strCategory,
             drinkAlcoholic: drinkData.drinkAlcoholic, 
@@ -68,37 +82,43 @@ $("#drinkBtn").click(function (e) {
             drinkDirections: drinkData.strInstructions
         }
           htmlInsert(drinkDataObj)
+
           console.log(drinkDataObj)
           $("#drink-details").attr('open', 'open')
         makeDrink(data.drinks[0]);
       });
+
     }
   });
 });
 
 const makeDrink = (drink) => {
   const drinkIngredients = [];
+
   const ingredUl = $(`<ul class="justify-center"></ul>`)
   $('#ingredients-drink').append(ingredUl)
   for (let i = 1; i <= 15; i++) {
     if (drink[`strIngredient${i}`]) {
       drinkIngredients.push(
         $(ingredUl).append($(`<li>${drink[`strMeasure${i}`]} | ${drink[`strIngredient${i}`]}</li>`))
+
       );
     } else {
       // Stop if no more ingredients
       break;
     }
   }
-  console.log(drinkIngredients);
+  //console.log(drinkIngredients);
 };
 // grabs the object from what button you pressed
 const htmlInsert = (item) =>
 {
+
     console.log(item.recipeName)
     var type = []
     var itemLink
     // check what button was pressedgit
+
     if (item.recipeName)
     {
         // if food button pressed
@@ -106,6 +126,7 @@ const htmlInsert = (item) =>
         console.log(type[1])
         const itemLink = $(`<a href="${type[3]}" target="_blank">Link</a>`)
         $("#links").append(itemLink)
+
       $("#food").text(item.recipeName)
       $("#food-summary").text(item.recipeName)
       const foodFav = $(`<div id="food-heart">Heart</div>`)
@@ -135,3 +156,4 @@ const htmlInsert = (item) =>
     itemImg.append($(`<img src="${type[2]}" width="200">`))
     $(`#${type[0]}Img`).append(itemImg)
 }
+
