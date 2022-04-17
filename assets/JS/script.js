@@ -14,7 +14,7 @@ $("#foodBtn").click(function (e) {
           recipeCategory: foodData.strCategory,
           recipeImg: foodData.strMealThumb,
           recipeVideo: foodData.strYoutube,
-          recipeDirections: foodData.strInstructions
+          recipeDirections: foodData.strInstructions,
         };
         makeMeal(data.meals[0]);
       });
@@ -47,16 +47,16 @@ $("#drinkBtn").click(function (e) {
     if (response.ok) {
       response.json().then(function (data) {
         console.log(data);
-        drinkData = data.drinks[0]
+        drinkData = data.drinks[0];
         //assign api fields to a data object
         const drinkDataObj = {
-            drinkName: drinkData.strDrink,
-            drinkCategory: drinkData.strCategory,
-            drinkAlcoholic: drinkData.drinkAlcoholic, 
-            drinkGlass: drinkData.drinkGlass,
-            drinkImg: drinkData.strDrinkThumb,
-            drinkDirections: drinkData.strInstructions
-        }
+          drinkName: drinkData.strDrink,
+          drinkCategory: drinkData.strCategory,
+          drinkAlcoholic: drinkData.drinkAlcoholic,
+          drinkGlass: drinkData.drinkGlass,
+          drinkImg: drinkData.strDrinkThumb,
+          drinkDirections: drinkData.strInstructions,
+        };
 
         makeDrink(data.drinks[0]);
       });
