@@ -12,7 +12,9 @@ $("#foodBtn").click(function (e) {
         // console.log(response);
       response.json().then(function (data) {
        
-         //console.log("food", data)
+
+        // console.log(data)
+
         //assign api fields to a data object
         const foodData = data.meals[0];
         const foodDataObj = {
@@ -24,9 +26,12 @@ $("#foodBtn").click(function (e) {
           recipeDirections: foodData.strInstructions
           };
           htmlInsert(foodDataObj)
-          makeMeal(data.meals[0]);
-        });
-      }
+
+          // auto opens detail drop down tab
+          $("#food-details").attr('open', 'open')
+        makeMeal(data.meals[0]);
+      });
+    }
   });
 });
 
@@ -34,12 +39,16 @@ $("#foodBtn").click(function (e) {
 const makeMeal = (meal) => {
   const ingredients = [];
 
-    const ingredUl = $(`<ul></ul>`)
+
+    const ingredUl = $(`<ul class="justify-center"></ul>`)
+
     $('#ingredients-recipe').append(ingredUl)
   for (let i = 1; i <= 20; i++) {
     if (meal[`strIngredient${i}`]) {
       ingredients.push(
-          $("#ingredients-recipe").append($(`<li>${meal[`strMeasure${i}`]} | ${meal[`strIngredient${i}`]}</li>`))
+
+          ingredUl.append($(`<li>${meal[`strMeasure${i}`]} | ${meal[`strIngredient${i}`]}</li>`))
+
       );
     } else {
       // Stop if no more ingredients
@@ -58,7 +67,9 @@ $("#drinkBtn").click(function (e) {
       $('#drink-details').children('div').empty()
     if (response.ok) {
       response.json().then(function (data) {
-        //console.log(data);
+
+        console.log(data);
+
         drinkData = data.drinks[0];
         //assign api fields to a data object
         const drinkDataObj = {
@@ -71,20 +82,26 @@ $("#drinkBtn").click(function (e) {
             drinkDirections: drinkData.strInstructions
         }
           htmlInsert(drinkDataObj)
-          //console.log(drinkDataObj)
-          makeDrink(data.drinks[0]);
-        });
+
+          console.log(drinkDataObj)
+          $("#drink-details").attr('open', 'open')
+        makeDrink(data.drinks[0]);
+      });
+
     }
   });
 });
 
 const makeDrink = (drink) => {
   const drinkIngredients = [];
-    const ingredUl = $(`<ul></ul>`)
+
+  const ingredUl = $(`<ul class="justify-center"></ul>`)
+  $('#ingredients-drink').append(ingredUl)
   for (let i = 1; i <= 15; i++) {
     if (drink[`strIngredient${i}`]) {
       drinkIngredients.push(
-        $("#ingredients-drink").append($(`<li>${drink[`strMeasure${i}`]} | ${drink[`strIngredient${i}`]}</li>`))
+        $(ingredUl).append($(`<li>${drink[`strMeasure${i}`]} | ${drink[`strIngredient${i}`]}</li>`))
+
       );
     } else {
       // Stop if no more ingredients
@@ -96,10 +113,12 @@ const makeDrink = (drink) => {
 // grabs the object from what button you pressed
 const htmlInsert = (item) =>
 {
-    //console.log(item.recipeName)
+
+    console.log(item.recipeName)
     var type = []
     var itemLink
-    // check what button was pressed
+    // check what button was pressedgit
+
     if (item.recipeName)
     {
         // if food button pressed
@@ -107,57 +126,34 @@ const htmlInsert = (item) =>
         console.log(type[1])
         const itemLink = $(`<a href="${type[3]}" target="_blank">Link</a>`)
         $("#links").append(itemLink)
-        
-      }
-      if (item.drinkName)
+
+      $("#food").text(item.recipeName)
+      $("#food-summary").text(item.recipeName)
+      const foodFav = $(`<div id="food-heart">Heart</div>`)
+      $("#food-fav").append(foodFav)
+      $("#food-heart").click(function ()
       {
+        console.log("food fav " + item.recipeName)
+      })
+    }
+    if (item.drinkName)
+    {
         // if drink button was pressed
         type = ["drink", item.drinkDirections, item.drinkImg]
-      }
-      const itemImg = $(`<div id="${type[0]}-div"></div>`)
-      //console.log(item)
-      const itemDir = $(`<p>${type[1]}</p>`)
-      $(`#directions-${type[0]}`).append(itemDir)
-      itemImg.append($(`<img src="${type[2]}">`))
-      $(`#${type[0]}Img`).append(itemImg)
-      renderPreviousSearch(item);
-      renderFavorite(item);
+      $('#drink').text(item.drinkName)
+      $("#drink-summary").text(item.drinkName)
+      const drinkFav = $(`<div id="drink-heart">heart</div>`)
+      $("#drink-fav").append(drinkFav)
+      $("#drink-heart").click(function ()
+      {
+        console.log("drink fav " + item.drinkName)
+      })
     }
-
-function renderPreviousSearch(item){
-  var name
-  if (item.drinkName){
-    var name = item.drinkName
-    preFoodDrink.push(item.drinkId)
-  }
-  if (item.recipeName){
-    var name = item.recipeName
-    preFoodDrink.push(item.recipeId)
-    localStorage.setItem("Food Id's ", JSON.stringify(preFoodDrink))
-  }
-  const preLiItem = $(`<li>${name}</li>`)
-  $("#pre").prepend(preLiItem)
-  console.log($("#pre").children("li").length)
-  if ($("#pre").children("li").length >= 9){
-      console.log("working")
-    $("#pre").find("li:last").remove()
-    }
-  }
-function renderFavorite(item){
-  var name
-  var list
-  if (item.drinkName){
-    var name = item.drinkName
-    var list = $("#favDrink")
-    favDrinks.push(item.drinkId)
-    localStorage.setItem("Favorite Drink's", JSON.stringify(favDrinks))
-  }
-  if (item.recipeName){
-    var name = item.recipeName
-    var list = $("#favFood")
-    favFoods.push(item.recipeId)
-    localStorage.setItem("Favorite Foods", JSON.stringify(favFoods))
-  }
-  const preLiItem = $(`<li>${name}</li>`)
-  list.append(preLiItem)
+    const itemImg = $(`<div id="${type[0]}-div"></div>`)
+    console.log(item)
+    const itemDir = $(`<p>${type[1]}</p>`)
+    $(`#directions-${type[0]}`).append(itemDir)
+    itemImg.append($(`<img src="${type[2]}" width="200">`))
+    $(`#${type[0]}Img`).append(itemImg)
 }
+
