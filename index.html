@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./tailwind/output.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css" rel="stylesheet">
     <title>Recipe Roulette</title>
   </head>
   <body>
@@ -22,32 +22,44 @@
     </header>
     <body>
         <main>
-      <section>
-        <h2 id="food" class="text-5xl">food</h2>
-        <button id="foodBtn" class="bg-emerald-200 rounded-full px-3">food</button>
-        <details id="food-details">
-            <summary>food details</summary>
-        <div id="recipeImg">food image</div>
-        <div id="ingredients-recipe">ingred</div>
-        <div id="directions-recipe">directions</div>
-        <div id="links">links</div>
-    </details>  
+      <section class="grid grid-cols-4 gap-4">
+        <div class="col-span-2">
+          <h2 id="food" class="text-5xl">food</h2>
+          <div>
+            <button id="foodBtn" class="bg-emerald-200 rounded-full px-3 w-32 h-10">food</button>
+          </div>
+        </div>
+        <div class="col-span-2 flex justify-center">
+          <details class="w-1/2" id="food-details">
+            <summary id="food-summary" class="text-center">food details</summary>
+            <div class="flex justify-center" id="recipeImg">food image</div>
+            <div class="flex justify-center" id="ingredients-recipe">ingred</div>
+            <div class="flex justify-center" id="directions-recipe">directions</div>
+            <div class="flex justify-center" id="links">links</div>
+            <div class="flex justify-center" id="food-fav">Heart</div>
+          </details>  
+        </div>
       </section>
 
-      <section>
+      <section class="grid grid-cols-4 gap-4">
+        <div class="col-span-2">
           <h2 id="drink" class="text-5xl">drink</h2>
-          <button id="drinkBtn" class="bg-emerald-200 rounded-full px-3">drink</button>
-          <details id="drink-details">
-              <summary>drink text</summary>
-          <div id="drinkImg">drink img</div>
-          <div id="ingredients-drink">ingre</div>
-        <div id="directions-drink">directions</div>
-    </details>
-        
+          <div>
+            <button id="drinkBtn" class="bg-emerald-200 rounded-full px-3 w-32 h-10">drink</button>
+          </div>
+        </div>
+          <div class="col-span-2 flex justify-center">
+            <details class="w-1/2" id="drink-details">
+              <summary id="drink-summary" class="text-center">drink text</summary>
+              <div class="flex justify-center" id="drinkImg">drink img</div>
+              <div class="flex justify-center" id="ingredients-drink">ingre</div>
+              <div class="flex justify-center" id="directions-drink">directions</div>
+              <div class="flex justify-center" id="drink-fav">Heart</div>
+            </details>
+          </div>
       </section>
       </main>
     </body>
-
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/JS/script.js"></script>
   </body>
