@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./tailwind/output.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css" rel="stylesheet">
     <title>Recipe Roulette</title>
   </head>
   <body>
@@ -27,27 +27,35 @@
         <button id="foodBtn" class="bg-emerald-200 rounded-full px-3">food</button>
         <details id="food-details">
             <summary>food details</summary>
-        <div id="recipeImg">food image</div>
+        <div class="w-1/2" id="recipeImg">food image</div>
         <div id="ingredients-recipe">ingred</div>
         <div id="directions-recipe">directions</div>
         <div id="links">links</div>
+        <div id="food-fav">Heart</div>
     </details>  
       </section>
 
-      <section>
+      <section class="flex justify-center">
+        <div>
           <h2 id="drink" class="text-5xl">drink</h2>
+        </div>
+        <div>
           <button id="drinkBtn" class="bg-emerald-200 rounded-full px-3">drink</button>
-          <details id="drink-details">
+        </div>
+        <div>
+          <div class="flex-1 w-96">
+            <details class="bg-gray-100 justify-center"  id="drink-details">
               <summary>drink text</summary>
-          <div id="drinkImg">drink img</div>
-          <div id="ingredients-drink">ingre</div>
-        <div id="directions-drink">directions</div>
-    </details>
-        
+              <div id="drinkImg">drink img</div>
+              <div id="ingredients-drink">ingre</div>
+              <div id="directions-drink">directions</div>
+              <div id="drink-fav">Heart</div>
+            </details>
+          </div>
+        </div>
       </section>
       </main>
     </body>
-
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/JS/script.js"></script>
   </body>
