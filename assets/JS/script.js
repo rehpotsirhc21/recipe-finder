@@ -32,12 +32,12 @@ $("#foodBtn").click(function (e) {
 const makeMeal = (meal) => {
   const ingredients = [];
 
-    const ingredUl = $(`<ul></ul>`)
+    const ingredUl = $(`<ul class="justify-center"></ul>`)
     $('#ingredients-recipe').append(ingredUl)
   for (let i = 1; i <= 20; i++) {
     if (meal[`strIngredient${i}`]) {
       ingredients.push(
-          $("#ingredients-recipe").append($(`<li>${meal[`strMeasure${i}`]} | ${meal[`strIngredient${i}`]}</li>`))
+          ingredUl.append($(`<li>${meal[`strMeasure${i}`]} | ${meal[`strIngredient${i}`]}</li>`))
       );
     } else {
       // Stop if no more ingredients
@@ -107,11 +107,12 @@ const htmlInsert = (item) =>
         const itemLink = $(`<a href="${type[3]}" target="_blank">Link</a>`)
         $("#links").append(itemLink)
       $("#food").text(item.recipeName)
+      $("#food-summary").text(item.recipeName)
       const foodFav = $(`<div id="food-heart">Heart</div>`)
       $("#food-fav").append(foodFav)
       $("#food-heart").click(function ()
       {
-        console.log("food fav")
+        console.log("food fav " + item.recipeName)
       })
     }
     if (item.drinkName)
@@ -119,6 +120,7 @@ const htmlInsert = (item) =>
         // if drink button was pressed
         type = ["drink", item.drinkDirections, item.drinkImg]
       $('#drink').text(item.drinkName)
+      $("#drink-summary").text(item.drinkName)
       const drinkFav = $(`<div id="drink-heart">heart</div>`)
       $("#drink-fav").append(drinkFav)
       $("#drink-heart").click(function ()

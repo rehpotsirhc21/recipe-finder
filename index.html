@@ -22,37 +22,41 @@
     </header>
     <body>
         <main>
-      <section>
-        <h2 id="food" class="text-5xl">food</h2>
-        <button id="foodBtn" class="bg-emerald-200 rounded-full px-3">food</button>
-        <details id="food-details">
-            <summary>food details</summary>
-        <div class="w-1/2" id="recipeImg">food image</div>
-        <div id="ingredients-recipe">ingred</div>
-        <div id="directions-recipe">directions</div>
-        <div id="links">links</div>
-        <div id="food-fav">Heart</div>
-    </details>  
-      </section>
-
-      <section class="flex justify-center">
-        <div>
-          <h2 id="drink" class="text-5xl">drink</h2>
-        </div>
-        <div>
-          <button id="drinkBtn" class="bg-emerald-200 rounded-full px-3">drink</button>
-        </div>
-        <div>
-          <div class="flex-1 w-96">
-            <details class="bg-gray-100 justify-center"  id="drink-details">
-              <summary>drink text</summary>
-              <div id="drinkImg">drink img</div>
-              <div id="ingredients-drink">ingre</div>
-              <div id="directions-drink">directions</div>
-              <div id="drink-fav">Heart</div>
-            </details>
+      <section class="grid grid-cols-4 gap-4">
+        <div class="col-span-2">
+          <h2 id="food" class="text-5xl">food</h2>
+          <div>
+            <button id="foodBtn" class="bg-emerald-200 rounded-full px-3 w-32 h-10">food</button>
           </div>
         </div>
+        <div class="col-span-2 flex justify-center">
+          <details class="w-1/2" id="food-details">
+            <summary id="food-summary" class="text-center">food details</summary>
+            <div class="flex justify-center" id="recipeImg">food image</div>
+            <div class="flex justify-center" id="ingredients-recipe">ingred</div>
+            <div class="flex justify-center" id="directions-recipe">directions</div>
+            <div class="flex justify-center" id="links">links</div>
+            <div class="flex justify-center" id="food-fav">Heart</div>
+          </details>  
+        </div>
+      </section>
+
+      <section class="grid grid-cols-4 gap-4">
+        <div class="col-span-2">
+          <h2 id="drink" class="text-5xl">drink</h2>
+          <div>
+            <button id="drinkBtn" class="bg-emerald-200 rounded-full px-3 w-32 h-10">drink</button>
+          </div>
+        </div>
+          <div class="col-span-2 flex justify-center">
+            <details class="w-1/2" id="drink-details">
+              <summary id="drink-summary" class="text-center">drink text</summary>
+              <div class="flex justify-center" id="drinkImg">drink img</div>
+              <div class="flex justify-center" id="ingredients-drink">ingre</div>
+              <div class="flex justify-center" id="directions-drink">directions</div>
+              <div class="flex justify-center" id="drink-fav">Heart</div>
+            </details>
+          </div>
       </section>
       </main>
     </body>
