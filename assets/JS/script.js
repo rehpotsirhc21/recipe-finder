@@ -68,7 +68,7 @@ $("#drinkBtn").click(function (e) {
     if (response.ok) {
       response.json().then(function (data) {
 
-        console.log(data);
+        //console.log(data);
 
         drinkData = data.drinks[0];
         //assign api fields to a data object
@@ -83,7 +83,7 @@ $("#drinkBtn").click(function (e) {
         }
           htmlInsert(drinkDataObj)
 
-          console.log(drinkDataObj)
+          //console.log(drinkDataObj)
           $("#drink-details").attr('open', 'open')
         makeDrink(data.drinks[0]);
       });
@@ -133,7 +133,7 @@ const htmlInsert = (item) =>
       $("#food-fav").append(foodFav)
       $("#food-heart").click(function ()
       {
-        console.log("food fav " + item.recipeName)
+        renderFavorite(item)
       })
     }
     if (item.drinkName)
@@ -146,7 +146,7 @@ const htmlInsert = (item) =>
       $("#drink-fav").append(drinkFav)
       $("#drink-heart").click(function ()
       {
-        console.log("drink fav " + item.drinkName)
+        renderFavorite(item)
       })
     }
     const itemImg = $(`<div id="${type[0]}-div"></div>`)
@@ -154,21 +154,26 @@ const htmlInsert = (item) =>
     const itemDir = $(`<p>${type[1]}</p>`)
     $(`#directions-${type[0]}`).append(itemDir)
     itemImg.append($(`<img src="${type[2]}" width="200">`))
-    $(`#${type[0]}Img`).append(itemImg)
+  $(`#${type[0]}Img`).append(itemImg)
+  renderPreviousSearch(item)
 }
 
 function renderPreviousSearch(item){
   var name
+  var idClass
   if (item.drinkName){
     var name = item.drinkName
+    var idClass = 'drink'
     preFoodDrink.push(item.drinkId)
+    localStorage.setItem("PreviousId", JSON.stringify(preFoodDrink))
   }
   if (item.recipeName){
     var name = item.recipeName
     preFoodDrink.push(item.recipeId)
-    localStorage.setItem("Food Id's ", JSON.stringify(preFoodDrink))
+    localStorage.setItem("PreviousId", JSON.stringify(preFoodDrink))
+    var idClass = "food"
   }
-  const preLiItem = $(`<li>${name}</li>`)
+  const preLiItem = $(`<li class="${idClass}">${name}</li>`)
   $("#pre").prepend(preLiItem)
   console.log($("#pre").children("li").length)
   if ($("#pre").children("li").length >= 9){
@@ -179,18 +184,84 @@ function renderPreviousSearch(item){
 function renderFavorite(item){
   var name
   var list
-  if (item.drinkName){
+  var id
+  if (item.drinkName)
+  {
+    var idClass = "drink"
     var name = item.drinkName
     var list = $("#favDrink")
     favDrinks.push(item.drinkId)
     localStorage.setItem("Favorite Drink's", JSON.stringify(favDrinks))
   }
-  if (item.recipeName){
+  if (item.recipeName)
+  {
+    var idClass = 'food'
     var name = item.recipeName
     var list = $("#favFood")
     favFoods.push(item.recipeId)
     localStorage.setItem("Favorite Foods", JSON.stringify(favFoods))
   }
-  const preLiItem = $(`<li>${name}</li>`)
+  const preLiItem = $(`<li class="${idClass}">${name}</li>`)
   list.append(preLiItem)
 }
+
+// gets li clicked on
+$("#nav").on("click", 'li', function (e)
+{
+  // checks if it is a food item
+  console.log($(this).attr('class'))
+  if ($(this).attr('class') === "food")
+  {
+    console.log($(this).text())
+    var foodItem = $(this).text()
+    console.log("yep")
+    const foodClickAPI = `https://www.themealdb.com/api/json/v1/1/search.php?s=${foodItem}`
+    // uses item name to call an api fetch for that item
+    fetch(foodClickAPI)
+      .then((response) => response.json())
+      .then((data) =>
+      {
+        $('#food-details').children('div').empty()
+        const foodData = data.meals[0];
+        const foodDataObj = {
+          recipeId: foodData.idMeal,
+          recipeName: foodData.strMeal,
+          recipeCategory: foodData.strCategory,
+          recipeImg: foodData.strMealThumb,
+          recipeVideo: foodData.strYoutube,
+          recipeDirections: foodData.strInstructions
+        };
+      // inserts objects item on dom
+        htmlInsert(foodDataObj)
+      })
+
+  }
+    // checks if it is a drink item
+  if ($(this).attr('class') === "drink")
+  {
+    var drinkItem = $(this).text()
+    console.log("nope")
+    const drinkClickAPI = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drinkItem}`
+        // uses item name to call an api fetch for that item
+    fetch(drinkClickAPI)
+      .then((response) => response.json())
+      .then((data) =>
+      {
+        console.log(data)
+        $('#drink-details').children('div').empty()
+        const drinkData = data.drinks[0];
+        const drinkDataObj = {
+          drinkId: drinkData.idDrink,
+            drinkName: drinkData.strDrink,
+            drinkCategory: drinkData.strCategory,
+            drinkAlcoholic: drinkData.drinkAlcoholic, 
+            drinkGlass: drinkData.drinkGlass,
+            drinkImg: drinkData.strDrinkThumb,
+            drinkDirections: drinkData.strInstructions
+        };
+        console.log(drinkDataObj)
+            // inserts objects item on dom
+        htmlInsert(drinkDataObj)
+      })
+  }
+})
