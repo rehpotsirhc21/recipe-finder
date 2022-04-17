@@ -13,8 +13,22 @@
     <header id="header" class="bg-gray-100">
         <nav id="nav">
             <ul class="flex flex-row justify-between p-3">
-              <li>favorites</li>
-              <li>previous searches</li>
+              <details id="favorite">
+                <summary>Favorites</summary>
+                  <details>
+                    <summary>Food</summary>
+                      <ul id="favFood"></ul>
+                  </details>
+                  <details>
+                    <summary>Drink</summary>
+                      <ul id="favDrink"></ul>
+                  </details>
+                <ul id="fav"></ul>
+              </details>
+              <details>
+                <summary>Previous Searches</summary>
+                <ul id="pre"></ul>
+              </details>
             </ul>
           </nav>
       <h1 id="title" class="text-6xl text-center">Recipe Roulette</h1>
