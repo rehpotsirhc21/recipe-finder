@@ -10,41 +10,49 @@
     <title>Recipe Roulette</title>
   </head>
   <body>
-    <header id="header" class="bg-gray-100">
-        <nav id="nav">
-            <ul class="flex flex-row justify-between p-3">
-              <li>favorites</li>
-              <li>previous searches</li>
-            </ul>
-          </nav>
-      <h1 id="title" class="text-6xl text-center">Recipe Roulette</h1>
-     
+    <header>
+      <h1 id="title" class="text-6xl text-center header-title">
+        Recipe Roulette
+      </h1>
     </header>
     <body>
-        <main>
-      <section>
-        <h2 id="food" class="text-5xl">food</h2>
-        <button id="foodBtn" class="bg-emerald-200 rounded-full px-3">food</button>
-        <details>
-            <summary>food details</summary>
-        <div id="foodImg">food image</div>
-        <div id="ingredients-food">ingred</div>
-        <div id="directions-food">directions</div>
-        <div id="links">links</div>
-    </details>  
-      </section>
-
-      <section>
-          <h2 id="drink" class="text-5xl">drink</h2>
-          <button id="drinkBtn" class="bg-emerald-200 rounded-full px-3">drink</button>
+      <main>
+        <section>
+          <div class="flex flex-row justify-between p-3">
+            <ul class="list-disc fav-list">
+              <h2 class="text-2xl">Favorites</h2>
+              <li>Fav example</li>
+            </ul>
+            <ul class="list-disc prev-search">
+              <h2 class="text-2xl">Previous Searches</h2>
+              <li>Prev search example</li>
+            </ul>
+          </div>
+          <h2 id="food" class="text-5xl">food</h2>
+          <button id="foodBtn" class="bg-emerald-200 rounded-full px-3">
+            food
+          </button>
           <details>
-              <summary>drink text</summary>
-          <div id="drinkImg">drink img</div>
-          <div id="ingredients-drink">ingre</div>
-        <div id="directions-drink">directions</div>
-    </details>
-        
-      </section>
+            <summary>food details</summary>
+            <div id="foodImg" class="rounded-full">food image</div>
+            <div id="ingredients-food">ingred</div>
+            <div id="directions-food">directions</div>
+            <div id="links">links</div>
+          </details>
+        </section>
+
+        <section>
+          <h2 id="drink" class="text-5xl">drink</h2>
+          <button id="drinkBtn" class="bg-emerald-200 rounded-full px-3">
+            drink
+          </button>
+          <details>
+            <summary>drink text</summary>
+            <div id="drinkImg" class="rounded-full">drink img</div>
+            <div id="ingredients-drink">ingre</div>
+            <div id="directions-drink">directions</div>
+          </details>
+        </section>
       </main>
     </body>
 

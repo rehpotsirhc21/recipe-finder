@@ -472,6 +472,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: flex;
 }
 
+.list-outside {
+  list-style-position: outside;
+}
+
+.list-disc {
+  list-style-type: disc;
+}
+
 .flex-row {
   flex-direction: row;
 }
@@ -482,11 +490,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .rounded-full {
   border-radius: 9999px;
-}
-
-.bg-gray-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
 .bg-emerald-200 {
@@ -515,6 +518,29 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-5xl {
   font-size: 3rem;
   line-height: 1;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.ring-purple-100 {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(243 232 255 / var(--tw-ring-opacity));
+}
+
+header {
+  background-color: gold;
+}
+
+.header-title {
+  color: purple;
 }
 
 main {

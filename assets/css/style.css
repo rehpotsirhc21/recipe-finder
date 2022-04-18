@@ -1,7 +1,13 @@
-@tailwind base; 
+@tailwind base;
 @tailwind components;
-@tailwind utilities; 
+@tailwind utilities;
 
+header {
+  background-color: gold;
+}
+.header-title {
+  color: purple;
+}
 main {
-    background-color: lightblue;
+  background-color: lightblue;
 }
