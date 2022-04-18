@@ -198,25 +198,6 @@ function renderPreviousSearch(item){
       $("#pre").find("li:last").remove()
       
     }
-  // const preLiItem = $(`<li class="${idClass}">${name}</li>`)
-  // $("#pre").prepend(preLiItem)
-  // console.log($("#pre").children("li").length)
-  // $("#pre").empty()
-  // for (let i = 0; i < preFoodDrink.length; i++)
-  // {
-  //   // var name = preFoodDrink.textContent
-  //   console.log(preFoodDrink[i])
-  //   const favLi = $(`<li class="${idClass}">${preFoodDrink}</li>`)
-  //   $("#pre").prepend(favLi)
-    
-  // }
-  // if ($("#pre").children("li").length >= 9)
-  // {
-    
-  //     console.log("working")
-  //   $("#pre").find("li:last").remove()
-  // }
-  
   }
 function renderFavorite(item){
   var name
@@ -325,12 +306,6 @@ var loadPre = function (preFoodDrink)
       var preFoodDrink = []
   }
   return preFoodDrink
-  
-  
-  
-  
-  
-  
 }
 var preFoodDrink = JSON.parse(localStorage.getItem("PreviousId"))
 console.log(preFoodDrink)
