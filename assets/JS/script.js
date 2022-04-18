@@ -1,4 +1,4 @@
-var preFoodDrink = []
+// var preFoodDrink = []
 var favFoods = []
 var favDrinks = []
 //fetch recipe on click
@@ -161,25 +161,50 @@ const htmlInsert = (item) =>
 function renderPreviousSearch(item){
   var name
   var idClass
+  var preFoodDrink = JSON.parse(localStorage.getItem("PreviousId"))
+  if (!preFoodDrink)
+  {
+    preFoodDrink = []
+  }
+  loadPre(preFoodDrink);
   if (item.drinkName){
-    var name = item.drinkName
+    // var name = item.drinkName
     var idClass = 'drink'
-    preFoodDrink.push(item.drinkId)
+    
+    preFoodDrink.push(item.drinkName)
+    console.log(preFoodDrink)
+    removeStorage(preFoodDrink)
     localStorage.setItem("PreviousId", JSON.stringify(preFoodDrink))
   }
-  if (item.recipeName){
-    var name = item.recipeName
-    preFoodDrink.push(item.recipeId)
+  if (item.recipeName)
+  {
+
+    // var name = item.recipeName
+    // loadPre(preFoodDrink);
+    preFoodDrink.push(item.recipeName)
+    removeStorage(preFoodDrink)
     localStorage.setItem("PreviousId", JSON.stringify(preFoodDrink))
     var idClass = "food"
   }
-  const preLiItem = $(`<li class="${idClass}">${name}</li>`)
-  $("#pre").prepend(preLiItem)
-  console.log($("#pre").children("li").length)
-  if ($("#pre").children("li").length >= 9){
-      console.log("working")
-    $("#pre").find("li:last").remove()
-    }
+  // const preLiItem = $(`<li class="${idClass}">${name}</li>`)
+  // $("#pre").prepend(preLiItem)
+  // console.log($("#pre").children("li").length)
+  $("#pre").empty()
+  for (let i = 0; i < preFoodDrink.length; i++)
+  {
+    // var name = preFoodDrink.textContent
+    console.log(preFoodDrink[i])
+    const favLi = $(`<li class="${idClass}">${preFoodDrink[i]}</li>`)
+    $("#pre").prepend(favLi)
+    
+  }
+  // if ($("#pre").children("li").length >= 9)
+  // {
+    
+  //     console.log("working")
+  //   $("#pre").find("li:last").remove()
+  // }
+  
   }
 function renderFavorite(item){
   var name
@@ -265,3 +290,33 @@ $("#nav").on("click", 'li', function (e)
       })
   }
 })
+var removeStorage = function (arry)
+{
+  // console.log(arry)
+  if (arry.length >= 9)
+  {
+    arry.splice(0, 1)
+    }
+}
+var loadPre = function (preFoodDrink)
+{
+  if (preFoodDrink)
+  {
+    var preKey = JSON.parse(localStorage.getItem("PreviousId"))
+
+  preFoodDrink = preKey
+  console.log(preKey)
+
+  }
+  else
+  {
+      var preFoodDrink = []
+  }
+  return preFoodDrink
+  
+  
+  
+  
+  
+  
+}
