@@ -1,6 +1,7 @@
 // var preFoodDrink = []
 var favFoods = []
 var favDrinks = []
+
 //fetch recipe on click
 $("#foodBtn").click(function (e) {
   // food API variable and fetch request
@@ -159,7 +160,6 @@ const htmlInsert = (item) =>
 }
 
 function renderPreviousSearch(item){
-  var name
   var idClass
   var preFoodDrink = JSON.parse(localStorage.getItem("PreviousId"))
   if (!preFoodDrink)
@@ -175,29 +175,41 @@ function renderPreviousSearch(item){
     console.log(preFoodDrink)
     removeStorage(preFoodDrink)
     localStorage.setItem("PreviousId", JSON.stringify(preFoodDrink))
+    const preLiItem = $(`<li class="${idClass}">${item.drinkName}</li>`)
+    $("#pre").prepend(preLiItem)
+    console.log(preLiItem)
   }
   if (item.recipeName)
   {
+    var idClass = "food"
+    loadPre(preFoodDrink);
+    const preLiItem = $(`<li class="${idClass}">${item.recipeName}</li>`)
+    $("#pre").prepend(preLiItem)
 
     // var name = item.recipeName
     // loadPre(preFoodDrink);
     preFoodDrink.push(item.recipeName)
     removeStorage(preFoodDrink)
     localStorage.setItem("PreviousId", JSON.stringify(preFoodDrink))
-    var idClass = "food"
+    
   }
+  if ($("#pre").children('li').length >= 9)
+    {
+      $("#pre").find("li:last").remove()
+      
+    }
   // const preLiItem = $(`<li class="${idClass}">${name}</li>`)
   // $("#pre").prepend(preLiItem)
   // console.log($("#pre").children("li").length)
-  $("#pre").empty()
-  for (let i = 0; i < preFoodDrink.length; i++)
-  {
-    // var name = preFoodDrink.textContent
-    console.log(preFoodDrink[i])
-    const favLi = $(`<li class="${idClass}">${preFoodDrink[i]}</li>`)
-    $("#pre").prepend(favLi)
+  // $("#pre").empty()
+  // for (let i = 0; i < preFoodDrink.length; i++)
+  // {
+  //   // var name = preFoodDrink.textContent
+  //   console.log(preFoodDrink[i])
+  //   const favLi = $(`<li class="${idClass}">${preFoodDrink}</li>`)
+  //   $("#pre").prepend(favLi)
     
-  }
+  // }
   // if ($("#pre").children("li").length >= 9)
   // {
     
@@ -320,3 +332,15 @@ var loadPre = function (preFoodDrink)
   
   
 }
+var preFoodDrink = JSON.parse(localStorage.getItem("PreviousId"))
+console.log(preFoodDrink)
+var setLoaded = function ()
+{
+  for (let i = 0; i < preFoodDrink.length; i++) {
+    const element = $(`<li>${preFoodDrink[i]}</li>`);
+    $("#pre").prepend(element)
+    console.log(preFoodDrink[i])
+    
+  }
+}
+setLoaded()
