@@ -2,6 +2,65 @@
 @tailwind components;
 @tailwind utilities; 
 
-main {
-    background-color: lightblue;
+body {
+    background-color: rgb(0, 0, 0);
 }
+
+#header {
+    background-image: url("/assets/Images/FoodImg.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+#foodBtn:hover {
+    transform: scale(1.1);
+    transition: all .1s ease-in-out; 
+    background-color: rgb(27, 202, 150);
+    border-width: .3rem;
+    border-color: rgb(71, 212, 177);
+}
+
+#drinkBtn:hover {
+    transform: scale(1.1);
+    transition: all .1s ease-in-out;
+    background-color: rgb(27, 202, 150);
+    border-width: .3rem;
+    border-color: rgb(71, 212, 177); 
+}
+
+section {
+    background-color: rgb(236, 233, 217);
+}
+
+#food-fav:hover {
+    background-color: rgb(121, 10, 10);
+    transform: scale(1.1);
+    transition: all .1s ease-in-out; 
+  }
+
+#food-fav {
+    background-color: rgb(92, 6, 6);
+    color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+}
+
+#drink-fav:hover {
+    background-color: rgb(121, 10, 10);
+    transform: scale(1.1);
+    transition: all .1s ease-in-out; 
+}
+
+
+#drink-fav {
+    background-color: rgb(92, 6, 6);
+    color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+}
+
+
+
