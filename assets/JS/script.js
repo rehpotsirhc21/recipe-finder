@@ -24,7 +24,7 @@ $("#foodBtn").click(function (e) {
           };
           htmlInsert(foodDataObj)
           // auto opens detail drop down tab
-          $("#food-details").attr('open', 'open')
+        $("#food-details").attr('open', 'open')
         makeMeal(data.meals[0]);
       });
     }
@@ -107,7 +107,7 @@ const htmlInsert = (item) =>
       $("#food-summary").text(item.recipeName)
       const foodFav = $(`<div id="food-heart"><i class="fa-solid fa-heart"></div>`)
       $("#food-fav").append(foodFav)
-      $("#food-heart").click(function ()
+      $("#food-fav").click(function ()
       {
         renderFavorite(item)
       })
@@ -120,14 +120,14 @@ const htmlInsert = (item) =>
       $("#drink-summary").text(item.drinkName)
       const drinkFav = $(`<div id="drink-heart"><i class="fa-solid fa-heart"></div>`)
       $("#drink-fav").append(drinkFav)
-      $("#drink-heart").click(function ()
+      $("#drink-fav").click(function ()
       {
         renderFavorite(item)
       })
     }
     const itemImg = $(`<div id="${type[0]}-div"></div>`)
     console.log(item)
-    const itemDir = $(`<p>${type[1]}</p>`)
+    const itemDir = $(`<p class ="overflow-auto h-40">${type[1]}</p>`)
     $(`#directions-${type[0]}`).append(itemDir)
     itemImg.append($(`<img src="${type[2]}" width="200">`))
   $(`#${type[0]}Img`).append(itemImg)
@@ -167,7 +167,7 @@ function renderPreviousSearch(item){
   }
   if ($("#pre-food").children('li').length >= 9)
     {
-      $("#pre-drink").find("li:last").remove()
+      $("#pre-food").find("li:last").remove()
       
   }
   if ($("#pre-drink").children('li').length >= 9)
@@ -244,6 +244,8 @@ $("#nav").on("click", 'li', function (e)
           recipeVideo: foodData.strYoutube,
           recipeDirections: foodData.strInstructions
         };
+        makeMeal(data.meals[0]);
+        $("#food-details").attr('open', 'open')
       // inserts objects item on dom
         htmlInsert(foodDataObj)
       })
@@ -272,6 +274,8 @@ $("#nav").on("click", 'li', function (e)
             drinkDirections: drinkData.strInstructions
         };
         console.log(drinkDataObj)
+        $("#drink-details").attr('open', 'open')
+        makeDrink(data.drinks[0]);
             // inserts objects item on dom
         htmlInsert(drinkDataObj)
       })
@@ -349,6 +353,10 @@ var preDrink = JSON.parse(localStorage.getItem("PreviousIdDrink"))
 // sets the prevoius searched drink items to the list
 var setLoadedDrink = function ()
 {
+  if (!preDrink)
+  {
+    preDrink = []
+  }
   for (let i = 0; i < preDrink.length; i++) {
     const element = $(`<li class="drink">${preDrink[i]}</li>`);
     $("#pre-drink").prepend(element)
@@ -359,6 +367,10 @@ var setLoadedDrink = function ()
 // sets the prevoius searched food items to the list
 var setLoadedFood = function ()
 {
+  if (!preFood)
+  {
+    preFood = []
+  }
   for (let i = 0; i < preFood.length; i++) {
     const element = $(`<li class="food">${preFood[i]}</li>`);
     $("#pre-food").prepend(element)
@@ -369,20 +381,35 @@ var setLoadedFood = function ()
 // sets the favortie drink item to the list
 var setLoadedfavDrink = function ()
 {
-  for (let i = 0; i < favDrinks.length; i++) {
-    const element = $(`<li class="drink">${favDrinks[i]}</li>`);
-    $("#favDrinks").prepend(element)
-    console.log(favDrinks[i])
+  if (!favDrinks)
+  {
+    favDrinks =[]
+  }
+  else
+  {
+    for (let i = 0; i < favDrinks.length; i++) {
+      const element = $(`<li class="drink">${favDrinks[i]}</li>`);
+      $("#favDrinks").prepend(element)
+      console.log(favDrinks[i])
+      
+    }
     
   }
 }
 // sets the favortie food item to the list
 var setLoadedfavFood = function ()
 {
-  for (let i = 0; i < favFood.length; i++) {
-    const element = $(`<li class="food">${favFood[i]}</li>`);
-    $("#favFood").prepend(element)
-    console.log(favFood[i])
+  if (!favFood)
+  {
+    favFood = []
+  }
+  else
+  {
+    for (let i = 0; i < favFood.length; i++) {
+      const element = $(`<li class="food">${favFood[i]}</li>`);
+      $("#favFood").prepend(element)
+      console.log(favFood[i])
+    }
     
   }
 }
