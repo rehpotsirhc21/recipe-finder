@@ -49,3 +49,4 @@ Deployed Application: https://rehpotsirhc21.github.io/recipe-finder/
 ## sources 
 help with iterating through the ingredients: https://codepen.io/FlorinPop17/pen/WNeggor?editors=1010
 
+![full site screen print](./assets/Images/screencapture-127-0-0-1-5500-index-html-2022-04-19-14_41_00.png)
