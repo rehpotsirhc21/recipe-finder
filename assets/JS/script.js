@@ -381,7 +381,7 @@ var setLoadedFood = function ()
 // sets the favortie drink item to the list
 var setLoadedfavDrink = function ()
 {
-  if (favDrinks === null)
+  if (!favDrinks)
   {
     favDrinks =[]
   }
