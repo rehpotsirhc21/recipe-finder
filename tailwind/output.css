@@ -472,12 +472,42 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: flex;
 }
 
+.w-1\/2 {
+  width: 50%;
+}
+.w-64{
+width: 16rem;
+/* 256px */
+}
+
+.flex-none {
+  flex: none;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
 .flex-row {
   flex-direction: row;
 }
 
+.flex-col {
+  flex-direction: column;
+}
+
 .justify-between {
   justify-content: space-between;
+}
+.justify-center {
+  justify-content: center;
+}
+.flex-initial{
+  flex: 0 1 auto;
+}
+
+.gap-4 {
+  gap: 1rem;
 }
 
 .rounded-full {
