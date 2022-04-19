@@ -9,16 +9,16 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css" rel="stylesheet">
     <title>Recipe Roulette</title>
-  </head>
-  <body>
-    <header id="header" class="bg-gray-100">
+</head>
+<body>
+    <header id="header" class="bg-black">
         <nav id="nav">
             <ul class="flex flex-row justify-between p-3">
               <details id="favorite">
-                <summary id="fav">Favorites</summary>
+                <summary id="fav" class="text-2xl text-black font-bold pl-2 pr-2 pb-1 list-none bg-emerald-200">Favorites</summary>
                   <details>
-                    <summary>Food</summary>
-                      <ul id="favFood"></ul>
+                    <summary class="text-black bg-emerald-200 text-center">Food</summary>
+                      <ul id="favFood" class="bg-emerald-200  text-black"></ul>
                   </details>
                   <details>
                     <summary>Drink</summary>
@@ -38,17 +38,16 @@
               </details>
             </ul>
           </nav>
-      <h1 id="title" class="text-6xl text-center">Recipe Roulette</h1>
-     
+      <h1 id="title" class="flex flex-row justify-center text-6xl font-bold text-white text-center p-3">Recipe Roulette</h1>
     </header>
-    <body>
-        <main>
-      <section class="grid grid-cols-4 gap-4">
-        <div class="col-span-2">
-          <h2 id="food" class="text-5xl">food</h2>
-          <div>
-            <button id="foodBtn" class="bg-emerald-200 rounded-full px-3 w-32 h-10">food</button>
+    <main>
+      <section>
+        <div>
+          <div class="flex flex-row justify-center">
+            <button id="foodBtn" class="bg-emerald-200 p-4 pl-40 pr-40 mt-3 mb-3 px-3">food</button>
           </div>
+          <h2 id="food" class="text-4xl flex flex-row justify-center mt-3 mb-3">food</h2>
+
         </div>
         <div class="col-span-2 flex justify-center">
           <details class="w-1/2" id="food-details">
@@ -62,12 +61,12 @@
         </div>
       </section>
 
-      <section class="grid grid-cols-4 gap-4">
-        <div class="col-span-2">
-          <h2 id="drink" class="text-5xl">drink</h2>
-          <div>
-            <button id="drinkBtn" class="bg-emerald-200 rounded-full px-3 w-32 h-10">drink</button>
+      <section>
+        <div>
+          <div class="flex flex-row justify-center">
+            <button id="drinkBtn" class="bg-emerald-200 p-4 pl-40 pr-40 mt-3 mb-3 px-3">drink</button>
           </div>
+          <h2 id="drink" class="text-4xl flex flex-row justify-center mt-3 mb-3">drink</h2>
         </div>
           <div class="col-span-2 flex justify-center">
             <details class="w-1/2" id="drink-details">
@@ -77,11 +76,11 @@
               <div class="flex justify-center" id="directions-drink"></div>
               <div class="flex justify-center" id="drink-fav"></div>
             </details>
-          </div>
+        </div>
       </section>
-      </main>
-    </body>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="./assets/JS/script.js"></script>
-  </body>
+    </main>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="./assets/JS/script.js"></script>
+</body>
 </html>
