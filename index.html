@@ -5,82 +5,121 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./tailwind/output.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css"
+      rel="stylesheet"
+    />
     <title>Recipe Roulette</title>
   </head>
   <body>
-    <header id="header" class="bg-gray-100">
-        <nav id="nav">
-            <ul class="flex flex-row justify-between p-3">
-              <details id="favorite">
-                <summary id="fav">Favorites</summary>
-                  <details>
-                    <summary>Food</summary>
-                      <ul id="favFood"></ul>
-                  </details>
-                  <details>
-                    <summary>Drink</summary>
-                      <ul id="favDrinks"></ul>
-                  </details>
-              </details>
-              <details id="pre-search">
-                <summary>Previous Searches</summary>
-                <details>
-                  <summary>Food</summary>
-                  <ul id="pre-food"></ul>
-                </details>
-                <details>
-                  <summary>Drink</summary>
-                  <ul id="pre-drink"></ul>
-                </details>
-              </details>
-            </ul>
-          </nav>
-      <h1 id="title" class="text-6xl text-center">Recipe Roulette</h1>
-     
+    <header id="header" class="bg-black">
+      <nav id="nav">
+        <ul class="flex flex-row justify-between p-3">
+          <details id="favorite">
+            <summary
+              id="fav"
+              class="text-2xl text-black font-bold pl-2 pr-2 pb-1 list-none bg-emerald-200"
+            >
+              Favorites
+            </summary>
+            <details>
+              <summary class="text-black bg-emerald-200 text-center">
+                Food
+              </summary>
+              <ul id="favFood" class="bg-emerald-200 text-black"></ul>
+            </details>
+            <details>
+              <summary class="text-black bg-emerald-200 text-center">Drink</summary>
+              <ul id="favDrinks" class="bg-emerald-200 text-black"></ul>
+            </details>
+          </details>
+          <details id="pre-search">
+            <summary class="text-2xl text-black font-bold pl-2 pr-2 pb-1 list-none bg-emerald-200">Previous Searches</summary>
+            <details>
+              <summary class = "text-black bg-emerald-200 text-center">Food</summary>
+              <ul id="pre-food" class="bg-emerald-200 text-black"></ul>
+            </details>
+            <details>
+              <summary class = "text-black bg-emerald-200 text-center">Drink</summary>
+              <ul id="pre-drink" class="bg-emerald-200 text-black"></ul>
+            </details>
+          </details>
+        </ul>
+      </nav>
+      <h1
+        id="title"
+        class="flex flex-row justify-center text-6xl font-bold text-white text-center p-3"
+      >
+        Recipe Roulette
+      </h1>
     </header>
-    <body>
-        <main>
-      <section class="grid grid-cols-4 gap-4">
-        <div class="col-span-2">
-          <h2 id="food" class="text-5xl">food</h2>
-          <div>
-            <button id="foodBtn" class="bg-emerald-200 rounded-full px-3 w-32 h-10">food</button>
+    <main>
+      <section>
+        <div>
+          <div class="flex flex-row justify-center">
+            <button
+              id="foodBtn"
+              class="bg-emerald-200 p-4 pl-40 pr-40 mt-3 mb-3 px-3"
+            >
+              food
+            </button>
           </div>
+          <h2 id="food" class="text-4xl flex flex-row justify-center mt-3 mb-3">
+            food
+          </h2>
         </div>
         <div class="col-span-2 flex justify-center">
           <details class="w-1/2" id="food-details">
-            <summary id="food-summary" class="text-center">Food Details</summary>
+            <summary id="food-summary" class="text-center">
+              Food Details
+            </summary>
             <div class="flex justify-center" id="recipeImg"></div>
             <div class="flex justify-center" id="ingredients-recipe"></div>
             <div class="flex justify-center" id="directions-recipe"></div>
             <div class="flex justify-center" id="links"></div>
             <div class="flex justify-center" id="food-fav"></div>
-          </details>  
+          </details>
         </div>
       </section>
 
-      <section class="grid grid-cols-4 gap-4">
-        <div class="col-span-2">
-          <h2 id="drink" class="text-5xl">drink</h2>
-          <div>
-            <button id="drinkBtn" class="bg-emerald-200 rounded-full px-3 w-32 h-10">drink</button>
+      <section>
+        <div>
+          <div class="flex flex-row justify-center">
+            <button
+              id="drinkBtn"
+              class="bg-emerald-200 p-4 pl-40 pr-40 mt-3 mb-3 px-3"
+            >
+              drink
+            </button>
           </div>
+          <h2
+            id="drink"
+            class="text-4xl flex flex-row justify-center mt-3 mb-3"
+          >
+            drink
+          </h2>
         </div>
-          <div class="col-span-2 flex justify-center">
-            <details class="w-1/2" id="drink-details">
-              <summary id="drink-summary" class="text-center">Drink Details</summary>
-              <div class="flex justify-center" id="drinkImg"></div>
-              <div class="flex justify-center" id="ingredients-drink"></div>
-              <div class="flex justify-center" id="directions-drink"></div>
-              <div class="flex justify-center" id="drink-fav"></div>
-            </details>
-          </div>
+        <div class="col-span-2 flex justify-center">
+          <details class="w-1/2" id="drink-details">
+            <summary id="drink-summary" class="text-center">
+              Drink Details
+            </summary>
+            <div class="flex justify-center" id="drinkImg"></div>
+            <div class="flex justify-center" id="ingredients-drink"></div>
+            <div class="flex justify-center" id="directions-drink"></div>
+            <div class="flex justify-center" id="drink-fav"></div>
+          </details>
+        </div>
       </section>
-      </main>
-    </body>
+    </main>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/JS/script.js"></script>
   </body>
