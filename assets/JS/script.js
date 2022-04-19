@@ -101,11 +101,11 @@ const htmlInsert = (item) =>
         // if food button pressed
         type = [ "recipe", item.recipeDirections, item.recipeImg, item.recipeVideo]
         console.log(type[1])
-        const itemLink = $(`<a href="${type[3]}" target="_blank">Link</a>`)
+        const itemLink = $(`<a href="${type[3]}" target="_blank" class= "	text-decoration-line: underline">Check Me Out on YouTube</a>`)
         $("#links").append(itemLink)
       $("#food").text(item.recipeName)
       $("#food-summary").text(item.recipeName)
-      const foodFav = $(`<div id="food-heart">Heart</div>`)
+      const foodFav = $(`<div id="food-heart"><i class="fa-solid fa-heart"></div>`)
       $("#food-fav").append(foodFav)
       $("#food-heart").click(function ()
       {
@@ -118,7 +118,7 @@ const htmlInsert = (item) =>
         type = ["drink", item.drinkDirections, item.drinkImg]
       $('#drink').text(item.drinkName)
       $("#drink-summary").text(item.drinkName)
-      const drinkFav = $(`<div id="drink-heart">heart</div>`)
+      const drinkFav = $(`<div id="drink-heart"><i class="fa-solid fa-heart"></div>`)
       $("#drink-fav").append(drinkFav)
       $("#drink-heart").click(function ()
       {
