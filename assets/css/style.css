@@ -7,7 +7,7 @@ body {
 }
 
 #header {
-    background-image: url("/assets/Images/FoodImg.jpg");
+    background-image: url("../Images/FoodImg.JPG");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
