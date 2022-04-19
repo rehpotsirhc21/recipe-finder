@@ -12,10 +12,6 @@ $("#foodBtn").click(function (e) {
         $('#food-details').children('div').empty()
         // console.log(response);
       response.json().then(function (data) {
-       
-
-        // console.log(data)
-
         //assign api fields to a data object
         const foodData = data.meals[0];
         const foodDataObj = {
@@ -27,7 +23,6 @@ $("#foodBtn").click(function (e) {
           recipeDirections: foodData.strInstructions
           };
           htmlInsert(foodDataObj)
-
           // auto opens detail drop down tab
           $("#food-details").attr('open', 'open')
         makeMeal(data.meals[0]);
@@ -35,30 +30,22 @@ $("#foodBtn").click(function (e) {
     }
   });
 });
-
 //function to get a list of all ingredients and their measurements
 const makeMeal = (meal) => {
   const ingredients = [];
-
-
     const ingredUl = $(`<ul class="justify-center"></ul>`)
-
     $('#ingredients-recipe').append(ingredUl)
   for (let i = 1; i <= 20; i++) {
     if (meal[`strIngredient${i}`]) {
       ingredients.push(
-
           ingredUl.append($(`<li>${meal[`strMeasure${i}`]} | ${meal[`strIngredient${i}`]}</li>`))
-
       );
     } else {
       // Stop if no more ingredients
       break;
     }
   }
-//   console.log(ingredients);
 };
-
 //fetch drink recipe on click
 $("#drinkBtn").click(function (e) {
   // food API variable and fetch request
@@ -68,9 +55,7 @@ $("#drinkBtn").click(function (e) {
       $('#drink-details').children('div').empty()
     if (response.ok) {
       response.json().then(function (data) {
-
         //console.log(data);
-
         drinkData = data.drinks[0];
         //assign api fields to a data object
         const drinkDataObj = {
@@ -83,43 +68,34 @@ $("#drinkBtn").click(function (e) {
             drinkDirections: drinkData.strInstructions
         }
           htmlInsert(drinkDataObj)
-
           //console.log(drinkDataObj)
           $("#drink-details").attr('open', 'open')
         makeDrink(data.drinks[0]);
       });
-
     }
   });
 });
-
 const makeDrink = (drink) => {
   const drinkIngredients = [];
-
   const ingredUl = $(`<ul class="justify-center"></ul>`)
   $('#ingredients-drink').append(ingredUl)
   for (let i = 1; i <= 15; i++) {
     if (drink[`strIngredient${i}`]) {
       drinkIngredients.push(
         $(ingredUl).append($(`<li>${drink[`strMeasure${i}`]} | ${drink[`strIngredient${i}`]}</li>`))
-
       );
     } else {
       // Stop if no more ingredients
       break;
     }
   }
-  //console.log(drinkIngredients);
 };
 // grabs the object from what button you pressed
 const htmlInsert = (item) =>
 {
-
-    console.log(item.recipeName)
     var type = []
     var itemLink
-    // check what button was pressedgit
-
+    // check what button was pressed
     if (item.recipeName)
     {
         // if food button pressed
@@ -127,7 +103,6 @@ const htmlInsert = (item) =>
         console.log(type[1])
         const itemLink = $(`<a href="${type[3]}" target="_blank">Link</a>`)
         $("#links").append(itemLink)
-
       $("#food").text(item.recipeName)
       $("#food-summary").text(item.recipeName)
       const foodFav = $(`<div id="food-heart">Heart</div>`)
@@ -158,7 +133,6 @@ const htmlInsert = (item) =>
   $(`#${type[0]}Img`).append(itemImg)
   renderPreviousSearch(item)
 }
-
 function renderPreviousSearch(item){
   var idClass
   var preFood = JSON.parse(localStorage.getItem("PreviousIdFood"))
@@ -188,11 +162,8 @@ function renderPreviousSearch(item){
     removeStorage(preFood)
     localStorage.setItem("PreviousIdFood", JSON.stringify(preFood))
     const preFoodLiItem = $(`<li class="${idClass}">${item.recipeName}</li>`)
+        // removes last child if the list is larger then 9
     $("#pre-food").prepend(preFoodLiItem)
-
-    // var name = item.recipeName
-    // loadPre(preFoodDrink);
-    
   }
   if ($("#pre-food").children('li').length >= 9)
     {
@@ -205,7 +176,6 @@ function renderPreviousSearch(item){
       
     }
 }
-  
 function renderFavorite(item){
   var idClass
   var favFood = JSON.parse(localStorage.getItem("favFoods"))
@@ -235,11 +205,8 @@ function renderFavorite(item){
     removeStorage(favFood)
     localStorage.setItem("favFoods", JSON.stringify(favFood))
     const favFoodLiItem = $(`<li class="${idClass}">${item.recipeName}</li>`)
+    // removes last child if the list is larger then 9
     $("#favFood").prepend(favFoodLiItem)
-
-    // var name = item.recipeName
-    // loadPre(favFoodDrink);
-    
   }
   if ($("#favFood").children('li').length >= 9)
     {
@@ -252,42 +219,6 @@ function renderFavorite(item){
       
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-// function renderFavorite(item){
-//   var name
-//   var list
-//   var id
-//   if (item.drinkName)
-//   {
-//     var idClass = "drink"
-//     var name = item.drinkName
-//     var list = $("#favDrink")
-//     favDrinks.push(item.drinkId)
-//     localStorage.setItem("Favorite Drink's", JSON.stringify(favDrinks))
-//   }
-//   if (item.recipeName)
-//   {
-//     var idClass = 'food'
-//     var name = item.recipeName
-//     var list = $("#favFood")
-//     favFoods.push(item.recipeId)
-//     localStorage.setItem("Favorite Foods", JSON.stringify(favFoods))
-//   }
-//   const preLiItem = $(`<li class="${idClass}">${name}</li>`)
-//   list.append(preLiItem)
-// }
-
-// gets li clicked on
 $("#nav").on("click", 'li', function (e)
 {
   // checks if it is a food item
@@ -316,7 +247,6 @@ $("#nav").on("click", 'li', function (e)
       // inserts objects item on dom
         htmlInsert(foodDataObj)
       })
-
   }
     // checks if it is a drink item
   if ($(this).attr('class') === "drink")
@@ -347,14 +277,15 @@ $("#nav").on("click", 'li', function (e)
       })
   }
 })
+// removes the first index item in the loacal storage arry
 var removeStorage = function (arry)
 {
-  // console.log(arry)
   if (arry.length >= 9)
   {
     arry.splice(0, 1)
     }
 }
+// loads the favorite drink items to an arry
 var loadFavDrinks = function (favDrinks)
 {
   if (favDrinks)
@@ -368,6 +299,7 @@ var loadFavDrinks = function (favDrinks)
   }
   return favDrinks
 }
+// loads the favorite food items to an arry
 var loadFavFood = function (favFood)
 {
   if (favFood)
@@ -381,6 +313,7 @@ var loadFavFood = function (favFood)
   }
   return favFood
 }
+// loads the prevoius searched drink items to an arry
 var loadPreDrink = function (preDrink)
 {
   if (preDrink)
@@ -394,6 +327,7 @@ var loadPreDrink = function (preDrink)
   }
   return preDrink
 }
+// loads the prevoius searched food items to an arry
 var loadPreFood = function (preFood)
 {
   if (preFood)
@@ -407,11 +341,12 @@ var loadPreFood = function (preFood)
   }
   return preFood
 }
+// calls all the local storage items
 var favDrinks = JSON.parse(localStorage.getItem("favDrinks"))
 var favFood = JSON.parse(localStorage.getItem("favFoods"))
 var preFood = JSON.parse(localStorage.getItem("PreviousIdFood"))
 var preDrink = JSON.parse(localStorage.getItem("PreviousIdDrink"))
-
+// sets the prevoius searched drink items to the list
 var setLoadedDrink = function ()
 {
   for (let i = 0; i < preDrink.length; i++) {
@@ -421,6 +356,7 @@ var setLoadedDrink = function ()
     
   }
 }
+// sets the prevoius searched food items to the list
 var setLoadedFood = function ()
 {
   for (let i = 0; i < preFood.length; i++) {
@@ -430,6 +366,7 @@ var setLoadedFood = function ()
     
   }
 }
+// sets the favortie drink item to the list
 var setLoadedfavDrink = function ()
 {
   for (let i = 0; i < favDrinks.length; i++) {
@@ -439,6 +376,7 @@ var setLoadedfavDrink = function ()
     
   }
 }
+// sets the favortie food item to the list
 var setLoadedfavFood = function ()
 {
   for (let i = 0; i < favFood.length; i++) {
@@ -448,6 +386,7 @@ var setLoadedfavFood = function ()
     
   }
 }
+// loads all local storage items
 setLoadedFood()
 setLoadedDrink()
 setLoadedfavDrink()
