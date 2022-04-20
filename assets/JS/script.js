@@ -62,8 +62,8 @@ $("#drinkBtn").click(function (e) {
             drinkId: drinkData.idDrink,
             drinkName: drinkData.strDrink,
             drinkCategory: drinkData.strCategory,
-            drinkAlcoholic: drinkData.drinkAlcoholic, 
-            drinkGlass: drinkData.drinkGlass,
+            drinkAlcoholic: drinkData.strAlcoholic, 
+            drinkGlass: drinkData.strGlass,
             drinkImg: drinkData.strDrinkThumb,
             drinkDirections: drinkData.strInstructions
         }
@@ -118,7 +118,12 @@ const htmlInsert = (item) =>
         type = ["drink", item.drinkDirections, item.drinkImg]
       $('#drink').text(item.drinkName)
       $("#drink-summary").text(item.drinkName)
+      console.log(item.drinkAlcoholic)
+      const drinkGlassType = $(`<div>${item.drinkGlass}</div>`)
+      const drinkAlcohol = $(`<div>${item.drinkAlcoholic} ${item.drinkCategory}</div>`)
       const drinkFav = $(`<div id="drink-heart"><i class="fa-solid fa-heart"></div>`)
+      $("#drinkAlcohol").append(drinkAlcohol)
+      $("#drinkGlass").append(drinkGlassType)
       $("#drink-fav").append(drinkFav)
       $("#drink-fav").click(function ()
       {
@@ -268,8 +273,8 @@ $("#nav").on("click", 'li', function (e)
           drinkId: drinkData.idDrink,
             drinkName: drinkData.strDrink,
             drinkCategory: drinkData.strCategory,
-            drinkAlcoholic: drinkData.drinkAlcoholic, 
-            drinkGlass: drinkData.drinkGlass,
+            drinkAlcoholic: drinkData.strAlcoholic, 
+            drinkGlass: drinkData.strGlass,
             drinkImg: drinkData.strDrinkThumb,
             drinkDirections: drinkData.strInstructions
         };
